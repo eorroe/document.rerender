@@ -10,7 +10,7 @@ document.body.innerHTML = '<h1>Hello World</h1>'; // doesn't change the actual i
 document.rerender(); // now all the changes above actually change on the DOM
 ```
 
-The properties are actually affecting the actual Element object just not changing the live `DOM`, therefore:
+The properties are actually affecting the actual Element object just not changing the **live** `DOM`, therefore:
 
 ```JS
 document.body.id = 'body';
@@ -27,3 +27,7 @@ document.body // now returns <body id="body"></body>
 - Perhaps change function name to `update()`
 - Store `DOM` method changes like `Element#remove()`
 - Specific `HTML` Element properties like `href` for `<a></a>` and `<link></link>` etc
+
+
+# Wish/Want
+A native way of letting the `DOM` know not to update/rerender the **live** `DOM` when editing a node's property until `documen.rerender()` or `document.update()` is called.
