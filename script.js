@@ -5,7 +5,10 @@
 			var oldFunc = HTMLElement.prototype[prop];
 			if(oldFunc instanceof Function) {
 				HTMLElement.prototype[prop] = function() {
-					changes.push( { node: this, prop: prop, func: oldFunc, args: arguments} );
+					var node = this, args = arguments;
+					return new Promise(function(res) {
+						changes.push( { node: node, prop: prop, func: oldFunc, args: args, res: res} );
+					});
 				}
 			}
 		} catch(e) {
@@ -34,7 +37,7 @@
 		var change;
 		while(change = changes.shift()) {
 			if(change.node[change.prop] instanceof Function) {
-				change.func.apply(change.node, change.args);
+				change.res( change.func.apply(change.node, change.args) );
 			} else {
 				elementSetters[change.prop].call(change.node, change.newVal);
 				change.propObj.value = null;
