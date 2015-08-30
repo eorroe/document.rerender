@@ -1,5 +1,5 @@
 # About
-`document.rerender()` **RErenders/Updates** the `DOM` on call. Looping through the changes that have been made to the `DOM`.
+`document.updateDOM()` **Updates** the `DOM` on call. Looping through the changes that have been made to the `DOM`.
 
 # Usage
 
@@ -7,7 +7,7 @@
 document.body.id = 'body'; // doesn't set the actual id attribute on the body element
 document.body.innerHTML = '<h1>Hello World</h1>'; // doesn't change the actual inner HTML of the body element
 
-document.rerender(); // now all the changes above actually change on the DOM
+document.updateDOM(); // now all the changes above actually change on the DOM
 ```
 
 The properties are actually affecting the actual Element object just not changing the **live** `DOM`, therefore:
@@ -24,10 +24,9 @@ document.body // now returns <body id="body"></body>
 ```
 
 # Future
-- Perhaps change function name to `update()`
-- Store `DOM` method changes like `Element#remove()`
+- Methods don't return anything (Hardest Part) probably best to make it return a Promise
 - Specific `HTML` Element properties like `href` for `<a></a>` and `<link></link>` etc
 
 
 # Wish/Want
-A native way of letting the `DOM` know not to update/rerender the **live** `DOM` when editing a node's property until `documen.rerender()` or `document.update()` is called.
+A native way of letting the `DOM` know not to update/rerender the **live** `DOM` when editing a node's property until `document.updateDOM()` is called.
