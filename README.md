@@ -3,6 +3,8 @@
 
 # Usage
 
+## Properties
+
 ```JS
 document.body.id = 'body'; // doesn't set the actual id attribute on the body element
 document.body.innerHTML = '<h1>Hello World</h1>'; // doesn't change the actual inner HTML of the body element
@@ -23,8 +25,19 @@ document.rerender(); // makes the changes to the live DOM
 document.body // now returns <body id="body"></body>
 ```
 
+## Methods
+Methods return a Promise:
+
+```JS
+var div = document.createElement('div'); // this methods isn't altered since its not part of HTMLElement.prototype (something to change in the future)
+document.body.appendChild(div).then(function(div) {
+  div.textContent = 'Hello World'; // set the textContent which won't actually change till updateDOM() is called
+  document.updateDOM(); // call it to change the textContent
+});
+document.updateDOM(); // this causes the appendChild method to resolve and actually append the child element which returns the div
+```
+
 # Future
-- Methods don't return anything (Hardest Part) probably best to make it return a Promise
 - Specific `HTML` Element properties like `href` for `<a></a>` and `<link></link>` etc
 
 
