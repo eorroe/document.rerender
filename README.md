@@ -20,7 +20,7 @@ document.body.id; // returns 'body'
 
 document.body // still returns <body></body>
 
-document.rerender(); // makes the changes to the live DOM
+document.updateDOM(); // makes the changes to the live DOM
 
 document.body // now returns <body id="body"></body>
 ```
