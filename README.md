@@ -81,7 +81,7 @@ I really really don't think we need a **Virtual DOM** if you can keep track of a
 
 To put it in code of how I see the virtual DOM:
 
-```
+```JS
 var diffs = vDOM.map(diff(realDOM));
 realDOM.apply(diffs);
 ```
