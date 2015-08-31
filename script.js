@@ -25,12 +25,14 @@
 					}
 				},
 				set: function(newVal) {
-					change.node = this, change.value = newVal;
-					for(var i = 0, l = changes.length; i < l; i++) {
-						var c = changes[i];
-						if(c.node === this && c.prop === prop) return;
+					if(elementSetters[prop] !== undefined) {
+						change.node = this, change.value = newVal;
+						for(var i = 0, l = changes.length; i < l; i++) {
+							var c = changes[i];
+							if(c.node === this && c.prop === prop) return;
+						}
+						changes.push(change);
 					}
-					changes.push(change);
 				}
 			});
 		}
