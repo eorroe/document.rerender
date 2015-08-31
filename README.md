@@ -2,7 +2,7 @@
 `document.updateDOM()` **Updates** the `DOM` on **CALL**. Looping through the changes that have been made to the `DOM`.
 So that you don't have to worry about the browser touching the `DOM` unexpectedly.
 
-**I haven't actually built anything with this yet. I want to try making something with this however, it'd be interesting to play with.**
+**I haven't actually built anything with this yet. I want to try making something with this however, it'd be interesting to play with. Also this could easily be completely annoying to build with**
 
 # Usage
 
@@ -49,6 +49,24 @@ document.body.querySelector('h1').then(function(h1) {
 document.updateDOM();
 ```
 
+I said this could be annoying to build with because take the example:
+```JS
+document.body.hasAttribute('class'); // returns a promise (This could be annoying)
+
+// Instead of:
+if(document.body.hasAttribute('class')) {
+  // do something
+}
+
+// You'd have to do:
+
+document.body.hasAttribute('class').then(function(hasClass) {
+  if(hasClass) {
+    // do something
+  }
+});
+```
+
 # Future
 - Specific `HTML` Element properties like `href` for `<a></a>` and `<link></link>` etc
 
@@ -58,7 +76,7 @@ There is so much to the `DOM APIs` to make everything like this, it'd take me a 
 # Wish/Want
 A native way of letting the `DOM` know not to update the **live** `DOM` when editing a node's property, method calling until `document.updateDOM()` is called. 
 
-# Other words
+# Other words/ Conclusion
 I really really don't think we need a **Virtual DOM** if you can keep track of all the changes correctly. Which will still require some complicated algorithm, but will skip a step:
 
 To put it in code of how I see the virtual DOM:
