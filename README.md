@@ -1,6 +1,6 @@
 # About
 `document.updateDOM()` **Updates** the `DOM` on **CALL**. Looping through the changes that have been made to the `DOM`.
-So that you don't have to worry about the browser touching the DOM unexpectedly.
+So that you don't have to worry about the browser touching the `DOM` unexpectedly.
 
 **I haven't actually built anything with this yet. I want to try making something with this however, it'd be interesting to play with.**
 
