@@ -21,7 +21,7 @@
 					if(change.value !== null) {
 						return change.value;
 					} else {
-						return elementGetters[prop].call(this);
+						return change.value = elementGetters[prop].call(this);
 					}
 				},
 				set: function(newVal) {
