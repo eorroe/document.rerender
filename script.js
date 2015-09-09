@@ -1,16 +1,14 @@
 (function() {
-	var elementSetters = {}, elementGetters = {}, changes = [];
+	var elementSetters = {}, elementGetters = {}, methods = {}, changes = []
 	function magic(prop) {
 		try {
-			var change = { prop: prop, func: HTMLElement.prototype[prop] }
-			if(change.func instanceof Function) {
-				HTMLElement.prototype[prop] = function() {
-					change.node = this, change.args = arguments;
-					return new Promise(function(res) {
-						change.res = res;
-						changes.push(change);
-					});
-				}
+			methods[prop] = HTMLElement.prototype[prop];
+			HTMLElement.prototype[prop] = function() {
+				var change = { prop: prop, func: methods[prop], node: this, args: arguments };
+				return new Promise(function(res) {
+					change.res = res;
+					changes.push(change);
+				});
 			}
 		} catch(e) {
 			elementGetters[prop] = HTMLElement.prototype.__lookupGetter__(prop);
